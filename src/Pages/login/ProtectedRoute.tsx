@@ -10,7 +10,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = props => {
     const isLoggedIn = useSelector ((state:any)=>state.auth.isLoggedIn)
     if (!isLoggedIn) {
         // user is not authenticated
-        return <Navigate to="/login" />;
+        return <Navigate to="/" />;
     }
     return <>{props.children}</>;
 };

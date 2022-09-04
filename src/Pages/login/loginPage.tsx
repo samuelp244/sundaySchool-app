@@ -49,7 +49,7 @@ const LoginPage=()=>{
                         }))
                         // localStorage.setItem('token', res.data.accessToken)
                         // if(decodedToken?.role==="user"){
-                        //     navigate("/",{
+                        //     navigate("/dashboard",{
                         //         state:{
                         //             username:decodedToken?.username
                         //         }
@@ -61,7 +61,7 @@ const LoginPage=()=>{
                         //         }
                         //     })
                         // } 
-                        navigate("/");
+                        navigate("/dashboard");
                         }else{
                             setInputValues({
                                 username:"",

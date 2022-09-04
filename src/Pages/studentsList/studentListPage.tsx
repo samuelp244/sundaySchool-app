@@ -83,7 +83,7 @@ export default function StudentListPage() {
                             ))}
                         </ul>
                         <div className="flex justify-start">
-                            <Link to="/"><button className=" bg-gray-500 hover:bg-gray-700 text-white font-sans font-semibold py-1 px-2 rounded" type="button">Back</button></Link>
+                            <Link to="/dashboard"><button className=" bg-gray-500 hover:bg-gray-700 text-white font-sans font-semibold py-1 px-2 rounded" type="button">Back</button></Link>
                             
                         </div>
                 

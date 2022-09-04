@@ -62,7 +62,7 @@ const AssessmentStudentList=()=>{
     // if the component has nothing to show it redirects to dashboard 
     useEffect(()=>{
         if(newStudentsArray?.length === 0){
-            navigate('/');
+            navigate('/dashboard');
         }else{
             setIsEmpty(false)
         }

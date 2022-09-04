@@ -36,12 +36,12 @@ store.subscribe(
 function App() {
   return (
     <Provider store={store}>
-    {/* <AuthProvider> */}
+
     <Router>
         <Routes>
-          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/" element={<LoginPage />}></Route>
 
-          <Route path="/" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>}></Route>
+          <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>}></Route>
           <Route path="/assessment-studentlist" element={<ProtectedRoute><ClassAssessmentPage /></ProtectedRoute>}></Route>
           <Route path="/assessment" element={<ProtectedRoute><AssessmentPage /></ProtectedRoute>}></Route>
           <Route path="/manageStudentAssessment" element={<ProtectedRoute><ManageStudentAssessment/></ProtectedRoute>}></Route>
@@ -54,7 +54,7 @@ function App() {
           <Route path="/addteacher" element={<ProtectedRoute><AddTeacher /></ProtectedRoute>}></Route>
         </Routes>
       </Router>
-      {/* </AuthProvider> */}
+
       </Provider>
   );
 }

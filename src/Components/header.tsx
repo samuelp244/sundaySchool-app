@@ -91,7 +91,7 @@ export default function Header(props:headerProps) {
                                 </div>
                                 <div className='flex flex-col text-lg gap-5'>
                                     <div>
-                                        <Link to="/"><p>Dashboard</p></Link>
+                                        <Link to="/dashboard"><p>Dashboard</p></Link>
                                     </div>
 
                                     { role==="user" ?

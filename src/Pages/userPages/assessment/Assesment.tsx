@@ -48,7 +48,7 @@ const Assessment = ()=>{
     // console.log(studentAssessment)
     useEffect(()=>{
         if(studentAssessment===undefined||student_id=== ""){
-            navigate('/');
+            navigate('/dashboard');
         }else{
             setIsEmpty(false)
         }
