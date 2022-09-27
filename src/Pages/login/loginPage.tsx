@@ -30,7 +30,7 @@ const LoginPage=()=>{
             const loginObject={
                 username:inputValues.username,
                 password:inputValues.password,
-                role:"admin"
+                // role:"admin"
             }
             // console.log(loginObject)
             await axiosPrivate.post("/login",loginObject).then(res=>{
