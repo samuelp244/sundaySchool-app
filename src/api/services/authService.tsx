@@ -1,12 +1,13 @@
 import axios from 'axios';
-const BASE_URL = 'http://localhost:1339/api/v1';
+import { SPRING_SERVER_BASE_URL } from './SpringServer/spring';
+// const BASE_URL = ;
 
 export default axios.create({
-    baseURL: BASE_URL,
-    withCredentials:true
+    baseURL: SPRING_SERVER_BASE_URL,
+
 });
 
 export const axiosPrivate = axios.create({
-    baseURL: BASE_URL,
+    baseURL: SPRING_SERVER_BASE_URL,
     headers: { 'Content-Type': 'application/json' }
 });

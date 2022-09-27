@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useState } from 'react';
-import { decodeToken } from "react-jwt";
+// import { decodeToken } from "react-jwt";
 import { setCredentials } from '../../redux/authSlice';
-import axios from '../../api/services/authService';
+import { axiosPrivate } from '../../api/services/authService';
 
 import { useNavigate } from 'react-router-dom';
-import { token } from '../InterfacesAndTypes';
+// import { token } from '../InterfacesAndTypes';
 import { useDispatch } from 'react-redux';
 
 const LoginPage=()=>{
@@ -16,7 +16,7 @@ const LoginPage=()=>{
     const [passwordInvalid,setPasswordInvalid] = useState(false);
     const [errorMessage,setErrorMessage] = useState("");
 
-    let decodedToken:token|null;
+    // let decodedToken:token|null;
     const navigate = useNavigate();
     const dispatch = useDispatch();
     
@@ -29,23 +29,24 @@ const LoginPage=()=>{
         if(inputValues.username!=="" && inputValues.password!==""){
             const loginObject={
                 username:inputValues.username,
-                password:inputValues.password
+                password:inputValues.password,
+                role:"admin"
             }
             // console.log(loginObject)
-            await axios.post("/login",loginObject).then(res=>{
+            await axiosPrivate.post("/login",loginObject).then(res=>{
                 // console.log(res)
                 // console.log(res.data.accessToken)
                 // console.log(typeof(res.data.accessToken))
-                if(res.statusText==="OK"){
+                if(res.status===200){
                     // console.log(res.data)
-                    if(res.data.accessToken){
-                        decodedToken = decodeToken(res.data.accessToken)
+                    if(res.data.username){
+                        // decodedToken = decodeToken(res.data.accessToken)
                         dispatch(setCredentials({
-                            user:decodedToken?.username,
-                            accessToken:res.data.accessToken,
+                            user:res.data?.username,
+                            // accessToken:res.data.accessToken,
                             // refreshToken:res.data.refreshToken,
                             isLoggedIn:true,
-                            userRole:decodedToken?.role
+                            userRole:res.data?.role
                         }))
                         // localStorage.setItem('token', res.data.accessToken)
                         // if(decodedToken?.role==="user"){
