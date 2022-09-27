@@ -22,8 +22,8 @@ const AddTeacher = () => {
 
 
     let classData = null;
-    const beershebaClasses = ["BEGINNER","PRIMARY_BOYS","PRIMARY_GIRLS","JUNIOUR_BOYS","JUNIOUR_GIRLS","INTERMEDIATE_BOYS","INTERMEDIATE_GIRLS","SENIOR_BOYS","SENIOR_GIRLS"];
-    if (TeacherDetails.church==="BEERSHEBA"){
+    const beershebaClasses = ["Begineer","Primary-Boys","Primary-Girls","Juniour-Boys","Juniour-Girls","Intermediate-Boys","Intermediate-Girls","Senior-Boys","Senior-Girls"];
+    if (TeacherDetails.church==="Beersheba"){
       classData = beershebaClasses
     }
     const axiosPrivate = useAxiosPrivate();
@@ -90,13 +90,14 @@ const AddTeacher = () => {
                             <div>
                                 <select name="church" className="w-[10rem] p-1 rounded-sm bg-gray-200 text-gray-700 border border-gray-200 font-sans" defaultValue={TeacherDetails.church} onChange={(e)=>HandleChange(e)}>
                                     <option value="DEFAULT" disabled>select church</option>
-                                    <option value="BEERSHEBA">BEERSHEBA</option>
-                                    <option value="HOUSE_OF_BEATITUDES">HOUSE OF BEATITUDES</option>
-                                    <option value="ELIEM">ELIEM</option>
-                                    <option value="BETHEL">BETHEL</option>
-                                    <option value="BETHANI">BETHANI</option>
-                                    <option value="NEW_JERUSALEM">NEW JERUSALEM</option>
-                                    <option value="REHABOTH">REHABOTH</option>
+                                    
+                                    <option value="Beersheba">BEERSHEBA</option>
+                                    <option value="House_Of_Beatitudes">HOUSE OF BEATITUDES</option>
+                                    <option value="Eliem">ELIEM</option>
+                                    <option value="Bethel">BETHEL</option>
+                                    <option value="Bethani">BETHANI</option>
+                                    <option value="New_Jerusalem">NEW JERUSALEM</option>
+                                    <option value="Rehaboth">REHABOTH</option>
                             
                                 </select>
                                 { invalidChurch ?<p className='text-xs mx-2 text-red-600 font-sans'>Please enter Church</p> : null}

@@ -34,6 +34,7 @@ const ManageTeachersPage = () => {
     if (selectedChurch==="Beersheba"){
       classData = beershebaClasses
     }
+    
     const viewTeacherDetails = (e:any,id:string) =>{
       e.preventDefault();
       setSelectedTeacherId(id);
@@ -187,13 +188,13 @@ const ManageTeachersPage = () => {
                                 <div>
                                     <select name="church" className="w-[10rem] p-1 rounded-sm bg-gray-200 text-gray-700 border border-gray-200 font-sans" defaultValue={teacher?.church} onChange={(e)=>HandleEditChange(e)} disabled={fieldDisabled}>
                                         <option value="DEFAULT" disabled>select church</option>
-                                        <option value="BEERSHEBA">BEERSHEBA</option>
-                                        <option value="HOUSE_OF_BEATITUDES">HOUSE OF BEATITUDES</option>
-                                        <option value="ELIEM">ELIEM</option>
-                                        <option value="BETHEL">BETHEL</option>
-                                        <option value="BETHANI">BETHANI</option>
-                                        <option value="NEW_JERUSALEM">NEW JERUSALEM</option>
-                                        <option value="REHABOTH">REHABOTH</option>
+                                        <option value="Beersheba">BEERSHEBA</option>
+                                        <option value="House_Of_Beatitudes">HOUSE OF BEATITUDES</option>
+                                        <option value="Eliem">ELIEM</option>
+                                        <option value="Bethel">BETHEL</option>
+                                        <option value="Bethani">BETHANI</option>
+                                        <option value="New_Jerusalem">NEW JERUSALEM</option>
+                                        <option value="Rehaboth">REHABOTH</option>
                                 
                                     </select>
                                     { invalidChurch ?<p className='text-xs mx-2 text-red-600 font-sans'>Please enter Church</p> : null}
