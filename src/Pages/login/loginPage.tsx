@@ -33,48 +33,53 @@ const LoginPage=()=>{
                 // role:"admin"
             }
             // console.log(loginObject)
-            await axiosPrivate.post("/login",loginObject).then(res=>{
-                // console.log(res)
-                // console.log(res.data.accessToken)
-                // console.log(typeof(res.data.accessToken))
-                if(res.status===200){
-                    // console.log(res.data)
-                    if(res.data.username){
-                        // decodedToken = decodeToken(res.data.accessToken)
-                        dispatch(setCredentials({
-                            user:res.data?.username,
-                            // accessToken:res.data.accessToken,
-                            // refreshToken:res.data.refreshToken,
-                            isLoggedIn:true,
-                            userRole:res.data?.role
-                        }))
-                        // localStorage.setItem('token', res.data.accessToken)
-                        // if(decodedToken?.role==="user"){
-                        //     navigate("/dashboard",{
-                        //         state:{
-                        //             username:decodedToken?.username
-                        //         }
-                        //     })
-                        // }else if(decodedToken?.role==="admin"){
-                        //     navigate("/admindashboard",{
-                        //         state:{
-                        //             username:decodedToken?.username
-                        //         }
-                        //     })
-                        // } 
-                        navigate("/dashboard");
-                        }else{
-                            setInputValues({
-                                username:"",
-                                password:""
-                            })
-                            setErrorMessage(res.data.message)
-                        }
-                }else{
+            try{
+                await axiosPrivate.post("/login",loginObject).then(res=>{
                     console.log(res)
-                }
-                
-            })
+                    // console.log(res.data.accessToken)
+                    // console.log(typeof(res.data.accessToken))
+                    if(res.status===200){
+                        // console.log(res.data)
+                        if(res.data.username){
+                            // decodedToken = decodeToken(res.data.accessToken)
+                            dispatch(setCredentials({
+                                user:res.data?.username,
+                                // accessToken:res.data.accessToken,
+                                // refreshToken:res.data.refreshToken,
+                                isLoggedIn:true,
+                                userRole:res.data?.role
+                            }))
+                            // localStorage.setItem('token', res.data.accessToken)
+                            // if(decodedToken?.role==="user"){
+                            //     navigate("/dashboard",{
+                            //         state:{
+                            //             username:decodedToken?.username
+                            //         }
+                            //     })
+                            // }else if(decodedToken?.role==="admin"){
+                            //     navigate("/admindashboard",{
+                            //         state:{
+                            //             username:decodedToken?.username
+                            //         }
+                            //     })
+                            // } 
+                            navigate("/dashboard");
+                            }else{
+                                setInputValues({
+                                    username:"",
+                                    password:""
+                                })
+                                setErrorMessage(res.data.message)
+                            }
+                    }else{
+                        console.log(res)
+                    }
+                    
+                })
+            }catch(err){
+                console.log(err)
+            }
+            
 
 
         }
