@@ -130,7 +130,7 @@ const AssessmentStudentList=()=>{
                 axiosPrivate.post(`${SPRING_SERVER_BASE_URL}/addAssessment`,AssessmentsObject).then(res=>{
                     console.log(res)
                     dispatch(deleteArray())
-                    navigate("/")
+                    navigate("/dashboard")
                 })
             }
         })
@@ -141,7 +141,7 @@ const AssessmentStudentList=()=>{
     const backtoDashboard = (e:any) =>{
         e.preventDefault();
         dispatch(deleteArray())
-        navigate("/")
+        navigate("/dashboard")
     }
      
     return (
