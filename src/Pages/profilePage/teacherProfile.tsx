@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import Header from '../../Components/header'
 import userImage from '../../assets/images/user.png'
-import useAxiosPrivate from '../../Hooks/useAxiosPrivate';
+// import useAxiosPrivate from '../../Hooks/useAxiosPrivate';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SPRING_SERVER_BASE_URL } from '../../api/services/SpringServer/spring';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 // import teacherData from '../teacher.json'
-interface userData{
+export interface userData{
   teacher_name:string,
   church:string,
   assigned_class:string,
@@ -15,7 +16,7 @@ interface userData{
 
 export default function TeacherProfile() {
   const [teacherData, setTeacherData] = useState<userData>();
-  const axiosPrivate = useAxiosPrivate();
+  // const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
   const user:string = useSelector((state:any)=>state.auth.user)
@@ -26,12 +27,12 @@ export default function TeacherProfile() {
 
     const getUsers = async () => {
         try {
-            const response = await axiosPrivate.get(`${SPRING_SERVER_BASE_URL}/getTeacherData?username=${user}`);
-            // console.log(response);
+            const response = await axios.get(`${SPRING_SERVER_BASE_URL}/getTeacherData?username=${user}`);
+            console.log(response);
             isMounted && setTeacherData(response.data);
         } catch (err) {
-            // console.error(err);
-            navigate('/', { state: { from: location }, replace: true });
+            console.error(err);
+            navigate('/dashboard', { state: { from: location }, replace: true });
         }
     }
 
@@ -41,7 +42,7 @@ export default function TeacherProfile() {
         isMounted = false;
         controller.abort();
     }
-  },[axiosPrivate,location,navigate,user])
+  },[location,navigate,user])
   return (
     <div className='h-screen p-0 flex flex-col gap-5'>
             <Header 

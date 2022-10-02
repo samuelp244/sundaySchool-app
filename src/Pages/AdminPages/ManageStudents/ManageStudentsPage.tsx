@@ -1,11 +1,12 @@
 import { Modal } from '@mantine/core'
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 // import { deleteStudent, editStudent, viewStudent } from '../../../api/services/SpringServer/AdminServices/StudentService'
 import { SPRING_SERVER_BASE_URL } from '../../../api/services/SpringServer/spring'
 import Header from '../../../Components/header'
-import useAxiosPrivate from '../../../Hooks/useAxiosPrivate'
+// import useAxiosPrivate from '../../../Hooks/useAxiosPrivate'
 import { getStudentsArray, studentDetails } from '../../InterfacesAndTypes'
 // import studentsData from '../../students.json'
 
@@ -56,18 +57,18 @@ const ManageStudentsPage = () => {
       classData = beershebaClasses
     }
 
-    const axiosPrivate = useAxiosPrivate()
+    // const axiosPrivate = useAxiosPrivate()
     // runs and updates the teacherArray when church and class selected
     useEffect(()=>{
       if(selectedClass!=="DEFAULT"&&selectedChurch!=="DEFAULT"){
-          axiosPrivate.get<getStudentsArray>(`${SPRING_SERVER_BASE_URL}/viewStudent?church=${selectedChurch}&class=${selectedClass}`).then(res=>{
+          axios.get<getStudentsArray>(`${SPRING_SERVER_BASE_URL}/viewStudent?church=${selectedChurch}&class=${selectedClass}`).then(res=>{
             console.log(res.data)
             setStudentsList(res.data.students)
           })
       }else{
         setStudentsList([])
       }
-    },[selectedClass,selectedChurch,axiosPrivate])
+    },[selectedClass,selectedChurch])
     
     useEffect(()=>{
       const s = studentsList?.filter(student=>student.uniqueID === selectedStudentId)[0]
@@ -100,7 +101,7 @@ const ManageStudentsPage = () => {
       class:student.class
     }
     // console.log(studentObject);
-    axiosPrivate.put(`${SPRING_SERVER_BASE_URL}/editStudent`,studentObject).then(()=>{
+    axios.put(`${SPRING_SERVER_BASE_URL}/editStudent`,studentObject).then(()=>{
       setStudentModalOpened(false)
       const updatedList = studentsList?.map(item=>{
         if(item.uniqueID===selectedStudentId){
@@ -126,7 +127,7 @@ const ManageStudentsPage = () => {
   const DeleteStudentHandler = (e:any) =>{
     e.preventDefault();
     // console.log(selectedStudentId)
-    axiosPrivate.delete(`${SPRING_SERVER_BASE_URL}/deleteStudent?uniqueID=${selectedStudentId}`).then(()=>{
+    axios.delete(`${SPRING_SERVER_BASE_URL}/deleteStudent?uniqueID=${selectedStudentId}`).then(()=>{
       setStudentModalOpened(false)
     })
     // deleteStudent(selectedStudentId).then(res=>{

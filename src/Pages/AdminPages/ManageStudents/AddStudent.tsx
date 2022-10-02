@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -5,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { SPRING_SERVER_BASE_URL } from '../../../api/services/SpringServer/spring'
 
 import Header from '../../../Components/header'
-import useAxiosPrivate from '../../../Hooks/useAxiosPrivate'
+// import useAxiosPrivate from '../../../Hooks/useAxiosPrivate'
 
 const AddStudent = () => {
     const role = useSelector((state:any)=>state.auth.role);
@@ -28,7 +29,9 @@ const AddStudent = () => {
     if (StudentDetails.church==="Beersheba"){
       classData = beershebaClasses
     }
-    const axiosPrivate = useAxiosPrivate()
+    const [showRespose,setShowResponse] = useState(false) 
+    const [showInvalidResponse,setInvalidResponse] = useState(false) 
+    // const axiosPrivate = useAxiosPrivate()
     const AddStudentHandler = (e:any) =>{
         e.preventDefault();
         if(StudentDetails.studentFirstName==="") setInvalidFirstName(true);
@@ -44,11 +47,24 @@ const AddStudent = () => {
             class:StudentDetails.selectedClass
           }
         // console.log(studentObject)
-        axiosPrivate.post(`${SPRING_SERVER_BASE_URL}/addStudent`,studentObject).then(res=>{
-            console.log(res)
-        })
+        try{
+            axios.post(`${SPRING_SERVER_BASE_URL}/addStudent`,studentObject).then(res=>{
+                console.log(res)
+                if(res.status===200){
+                    setInvalidResponse(false)
+                    setShowResponse(true);
+                }
+            })
+        }catch(err){
+            console.log(err)
+            setShowResponse(false)
+            setInvalidResponse(true)
+
+        }
+        
 
     }
+    
     const HandleChange = (e:any) =>{
         
         setInvalidFirstName(false);
@@ -134,6 +150,16 @@ const AddStudent = () => {
                                 { invalidClassName ?<p className='text-xs mx-2 text-red-600 font-sans'>Please enter Class</p> : null}
                             </div>
                         </div>
+                        {showRespose?
+                        <div>
+                            <p>Record Added!</p>
+                        </div>
+                        :null}
+                        {showInvalidResponse?
+                        <div>
+                            <p>Record Already exists!</p>
+                        </div>
+                        :null}
                         <div className="flex justify-between">
                             <Link to="/managestudents"><button className="bg-gray-500 hover:bg-gray-700 text-white font-sans font-semibold py-1 px-2 rounded" type="button">Back</button></Link>
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-sans font-semibold py-1 px-2 rounded" type="button" onClick={(e)=>AddStudentHandler(e)} >add</button>

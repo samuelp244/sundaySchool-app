@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -5,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { SPRING_SERVER_BASE_URL } from '../../../api/services/SpringServer/spring';
 
 import Header from '../../../Components/header';
-import useAxiosPrivate from '../../../Hooks/useAxiosPrivate';
+// import useAxiosPrivate from '../../../Hooks/useAxiosPrivate';
 
 const AddTeacher = () => {
     const role = useSelector((state:any)=>state.auth.role)
@@ -19,15 +20,29 @@ const AddTeacher = () => {
     const [invalidMobile,setInvalidMobile] = useState(false);
     const [invalidChurch,setInvalidChurch] = useState(false);
     const [invalidClassName,setInvalidClassName] = useState(false);
-
-
+    const [showRespose,setShowResponse] = useState(false) 
+    const [showInvalidResponse,setInvalidResponse] = useState(false) 
     let classData = null;
     const beershebaClasses = ["Begineer","Primary-Boys","Primary-Girls","Juniour-Boys","Juniour-Girls","Intermediate-Boys","Intermediate-Girls","Senior-Boys","Senior-Girls"];
     if (TeacherDetails.church==="Beersheba"){
       classData = beershebaClasses
+    }else if(TeacherDetails.church==="Beersheba"){
+        classData = beershebaClasses
+    }else if(TeacherDetails.church==="House_Of_Beatitudes"){
+        classData = beershebaClasses
+    }else if(TeacherDetails.church==="Eliem"){
+        classData = beershebaClasses
+    }else if(TeacherDetails.church==="Bethel"){
+        classData = beershebaClasses
+    }else if(TeacherDetails.church==="Bethani"){
+        classData = beershebaClasses
+    }else if(TeacherDetails.church==="New_Jerusalem"){
+        classData = beershebaClasses
+    }else if(TeacherDetails.church==="Rehaboth"){
+        classData = beershebaClasses
     }
-    const axiosPrivate = useAxiosPrivate();
-    const AddTeacherHandler = (e:any) =>{
+    // const axiosPrivate = useAxiosPrivate();
+    const AddTeacherHandler = async(e:any) =>{
         e.preventDefault();
         if(TeacherDetails.teacherFullName==="") setInvalidFullName(true);
         if(TeacherDetails.teacherMobile==="") setInvalidMobile(true);
@@ -39,10 +54,21 @@ const AddTeacher = () => {
             church:TeacherDetails.church,
             assigned_class:TeacherDetails.selectedClass
           }
-        axiosPrivate.post(`${SPRING_SERVER_BASE_URL}/addTeacher`,teacherObject)
-        // addTeacher(teacherObject).then(res=>{
-        //     console.log(res)
-        // })
+        try{
+            const res = await axios.post(`${SPRING_SERVER_BASE_URL}/addTeacher`,teacherObject)
+            console.log(res)
+            if(res.status ===200){
+                setInvalidResponse(false)
+                setShowResponse(true);
+            }
+        }catch(err){
+            console.log(err)
+            setShowResponse(false)
+            setInvalidResponse(true)
+        }
+        
+        
+  
     }
     const HandleChange = (e:any) =>{
         const {name,value} = e.target;
@@ -50,6 +76,8 @@ const AddTeacher = () => {
         setInvalidMobile(false);
         setInvalidChurch(false);
         setInvalidClassName(false);
+        setShowResponse(false)
+        setInvalidResponse(false)
         setTeacherDetails({
             ...TeacherDetails,
             [name]:value
@@ -118,6 +146,17 @@ const AddTeacher = () => {
                                 { invalidClassName ?<p className='text-xs mx-2 text-red-600 font-sans'>Please enter Class</p> : null}
                             </div>
                         </div>
+                        {showRespose?
+                        <div>
+                            <p>Record Added!</p>
+                        </div>
+                        :null}
+                        {showInvalidResponse?
+                        <div>
+                            <p>Record Already exists!</p>
+                        </div>
+                        :null}
+                        
                         <div className="flex justify-between">
                             <Link to="/manageteachers"><button className="bg-gray-500 hover:bg-gray-700 text-white font-sans font-semibold py-1 px-2 rounded" type="button">Back</button></Link>
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-sans font-semibold py-1 px-2 rounded" type="button" onClick={(e)=>AddTeacherHandler(e)} >add</button>

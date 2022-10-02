@@ -7,7 +7,8 @@ import { studentDetails } from '../InterfacesAndTypes';
 
 import { useSelector } from 'react-redux';
 import { SPRING_SERVER_BASE_URL } from '../../api/services/SpringServer/spring';
-import useAxiosPrivate from '../../Hooks/useAxiosPrivate';
+import axios from 'axios';
+// import useAxiosPrivate from '../../Hooks/useAxiosPrivate';
 // import { getStudentsDataforAssessment } from '../../api/services/SpringServer/UserService/AssessmentsService';
 
 export default function StudentListPage() {
@@ -18,9 +19,9 @@ export default function StudentListPage() {
     const user:string = useSelector((state:any)=>state.auth.user)
     const [church_name,setChurch_name] = useState("");
     const [class_name,setClass_name] = useState("");
+    const [showData,setShowData] = useState(false)
 
-
-    const axiosPrivate = useAxiosPrivate();
+    // const axiosPrivate = useAxiosPrivate();
 
     const viewStudentDetails=(e:any,id:string)=>{
         e.preventDefault();
@@ -39,12 +40,13 @@ export default function StudentListPage() {
         //     setChurch_name(res.data.studentsMarks[0].church);
         //     setClass_name(res.data.studentsMarks[0].class);
         // })
-        axiosPrivate.get(`${SPRING_SERVER_BASE_URL}/getStudentsForAssessment?username=${user}`).then(res=>{
+        axios.get(`${SPRING_SERVER_BASE_URL}/getStudentsForAssessment?username=${user}`).then(res=>{
+            if(res.data.studentsMarks.length>0) setShowData(true)
             setStudentsArray(res.data.studentsMarks);
-            setChurch_name(res.data.studentsMarks[0].church);
-            setClass_name(res.data.studentsMarks[0].class);
+            setChurch_name(res.data.studentsMarks[0]?.church);
+            setClass_name(res.data.studentsMarks[0]?.class);
         })
-    },[axiosPrivate,user])
+    },[user])
   return (
     <div className='h-screen p-0 flex flex-col gap-5'>
             < Modal
@@ -68,7 +70,9 @@ export default function StudentListPage() {
 
             <main className="relative  flex flex-col gap-4">
                 <div className='flex justify-center'>
-                    <div className='bg-white shadow-2xl px-8 py-3 pt-5 mx-3  rounded-2xl grid gap-5 font-serif w-[21rem]'>
+                <div className='bg-white shadow-2xl px-8 py-3 pt-5 mx-3  rounded-2xl grid gap-5 font-serif w-[21rem]'>
+                    {showData?
+                    <>
                         <div className="flex justify-center ">
                             <h1 className="  text-xl">{church_name+" "+class_name}</h1>
                         </div>
@@ -88,7 +92,16 @@ export default function StudentListPage() {
                         </div>
                 
                         <div className="clearfix"></div>
+                    </>
+                    :
+                    <div className=" ">
+                        <div className='flex justify-center'>
+                            <p className=" pt-2 pb-2 text-gray-500 text-sm font-sans font-semibold">Nothing to show here</p>
+                        </div>
+                    </div> 
+                    }
                     </div>
+                    
                 </div>
             </main>
         </div>

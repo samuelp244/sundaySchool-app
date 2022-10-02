@@ -1,4 +1,5 @@
 import { Modal } from '@mantine/core';
+import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -6,7 +7,7 @@ import { SPRING_SERVER_BASE_URL } from '../../../api/services/SpringServer/sprin
 // import { editAssessment, viewAssessmentMarks } from '../../../api/services/SpringServer/UserService/AssessmentsService';
 
 import Header from '../../../Components/header';
-import useAxiosPrivate from '../../../Hooks/useAxiosPrivate';
+// import useAxiosPrivate from '../../../Hooks/useAxiosPrivate';
 import useCurrData from '../../../Hooks/useCurrData';
 // import { initiateArray, updateArray } from '../../../redux/classAssessment';
 
@@ -25,8 +26,10 @@ const ManageStudentAssessment = () => {
     const [studentAssessmentModalOpened,setStudentAssessmentModalOpened] = useState(false);
     const [fieldDisabled,setFieldDisabled]= useState(true);
 
-    const axiosPrivate = useAxiosPrivate();
+    // const axiosPrivate = useAxiosPrivate();
     const currDate = useCurrData() 
+
+    const [showfeedback,setfeedback] = useState(false)
 
     const [assessmentValues] = useState<AssessmentInputs>({
         attendance:useRef<HTMLSelectElement | null>(null),
@@ -40,13 +43,13 @@ const ManageStudentAssessment = () => {
     })
 
     useEffect(()=>{
-        axiosPrivate.get(`${SPRING_SERVER_BASE_URL}/viewAssessmentMarks?username=${user}&date=${currDate}`).then(res=>{
+        axios.get(`${SPRING_SERVER_BASE_URL}/viewAssessmentMarks?username=${user}&date=${currDate}`).then(res=>{
             setStudentAssessmentArray(res.data.studentsMarks);
         })
         // viewAssessmentMarks(user,currDate).then(res=>{
         //     setStudentAssessmentArray(res.data.studentsMarks);
         // })
-    },[axiosPrivate,user,currDate])
+    },[user,currDate])
     
     useEffect(()=>{
         const s = studentsAssessmentArray?.filter(student=>student.uniqueID === selectedStudentId)[0]
@@ -140,9 +143,10 @@ const ManageStudentAssessment = () => {
                 username:user
             }
             // console.log(updatedAssessmentsObject)
-            axiosPrivate.put(`${SPRING_SERVER_BASE_URL}/editAssessmentMarks`,updatedAssessmentsObject).then(res=>{
+            axios.put(`${SPRING_SERVER_BASE_URL}/editAssessmentMarks`,updatedAssessmentsObject).then(res=>{
                 console.log(res)
                 setFieldDisabled(true)
+                if(res.status===200) setfeedback(true);
             })
         }
     }
@@ -168,6 +172,10 @@ const ManageStudentAssessment = () => {
                             </div>
                             
                         ))}
+                        {showfeedback?
+                        <div>
+                            <p>submitted!</p>
+                        </div>:null}
                         <div className="flex justify-between">
                             <Link to="/dashboard"><button className="bg-gray-500 hover:bg-gray-700 text-white font-sans font-semibold py-1 px-2 rounded" type="button">Back</button></Link>
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-sans font-semibold py-1 px-2 rounded" type="button" onClick={(e)=>submitEditedClassAssessments(e)} >submit</button>

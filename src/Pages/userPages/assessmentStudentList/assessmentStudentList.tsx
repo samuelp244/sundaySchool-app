@@ -7,8 +7,9 @@ import { Modal} from '@mantine/core';
 import StudentCard from "./studentCard";
 // import { addAssessment, viewAssessmentMarks } from "../../../api/services/SpringServer/UserService/AssessmentsService";
 import useCurrData from "../../../Hooks/useCurrData";
-import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
+// import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
 import { SPRING_SERVER_BASE_URL } from "../../../api/services/SpringServer/spring";
+import axios from "axios";
 
 
 
@@ -22,6 +23,7 @@ const AssessmentStudentList=()=>{
     const [submitModalOpened,setSubmitModalOpened] = useState(false);
     const storeAssessmentArray:[FinalAssessment] = useSelector((state:any)=>state.assessment.assessmentArray);
     const [dataAlreadyExists,setDataAlreadyExists] = useState(false);
+    const [showApiError,setApiError] = useState(false)
     const [assessmentArray,setAssessmentArray] = useState(storeAssessmentArray?.map(
         s=>({
             "church" : s.church,
@@ -104,7 +106,7 @@ const AssessmentStudentList=()=>{
     }
 
     const currDate = useCurrData();
-    const axiosPrivate = useAxiosPrivate();
+    // const axiosPrivate = useAxiosPrivate();
     const confirmClassAssessment = (e:any)=>{
         e.preventDefault();
         const AssessmentsObject = {
@@ -123,15 +125,22 @@ const AssessmentStudentList=()=>{
         //         })
         //     }
         // })
-        axiosPrivate.get(`${SPRING_SERVER_BASE_URL}/viewAssessmentMarks?username=${user}&date=${currDate}`).then(res=>{
+        axios.get(`${SPRING_SERVER_BASE_URL}/viewAssessmentMarks?username=${user}&date=${currDate}`).then(res=>{
             if(res.data.studentsMarks.length!==0){
                 setDataAlreadyExists(true)
             }else{
-                axiosPrivate.post(`${SPRING_SERVER_BASE_URL}/addAssessment`,AssessmentsObject).then(res=>{
-                    console.log(res)
-                    dispatch(deleteArray())
-                    navigate("/dashboard")
-                })
+                try{
+                    axios.post(`${SPRING_SERVER_BASE_URL}/addAssessment`,AssessmentsObject).then(res=>{
+                        if(res.status===200){
+                            dispatch(deleteArray())
+                            navigate("/dashboard")
+                        }
+                    })
+                }catch(err){
+                    setApiError(true)
+                    console.log(err)
+                }
+                
             }
         })
         
@@ -166,6 +175,10 @@ const AssessmentStudentList=()=>{
                 {dataAlreadyExists?
                 <div>
                     <p>data Already Exists!</p>
+                </div>:null}
+                {showApiError?
+                <div>
+                    <p>internal Error!</p>
                 </div>:null}
                 <div className="flex justify-end">
                         <button className=" bg-blue-500 hover:bg-blue-700 text-white font-sans font-semibold py-1 px-2 rounded" type="button" onClick={(e)=>confirmClassAssessment(e)} >Confirm</button>

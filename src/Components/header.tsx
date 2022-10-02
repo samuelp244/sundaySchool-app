@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '../Hooks/useMediaQuery';
 import { logOut } from '../redux/authSlice';
 import { deleteArray } from '../redux/classAssessment';
-import axios from "../api/services/authService"
+// import axios from "../api/services/authService"
 
 export default function Header(props:headerProps) {
     const [navbarOpened, setNavbarOpened] = useState(false);
@@ -26,9 +26,6 @@ export default function Header(props:headerProps) {
         dispatch(logOut())
         dispatch(deleteArray())
         // localStorage.removeItem('redux')
-        axios.get('/logout').then(res=>{
-            console.log(res);
-        })
     }
     const username = useSelector((state:any)=>state.auth.user)
 

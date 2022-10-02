@@ -9,8 +9,10 @@ import {IoLocationOutline} from 'react-icons/io5';
 
 import useCurrData from "../../Hooks/useCurrData";
 // import { getStudentsDataforAssessment } from "../../api/services/SpringServer/UserService/AssessmentsService";
-import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
+// import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 import { SPRING_SERVER_BASE_URL } from "../../api/services/SpringServer/spring";
+import axios from "axios";
+// import { userData } from "../profilePage/teacherProfile";
 
 
 // import teacherData from '../teacher.json'
@@ -37,6 +39,7 @@ export default function DashboardItems(props:dashboardProps){
     const [studentsArray,setStudentsArray] = useState<studentDetails[]>();
     const [church_name,setChurch_name] = useState("");
     const [class_name,setClass_name] = useState("");
+
     const assessmentArray = studentsArray?.map(s=>({
         "church" : church_name,
         "class": class_name,
@@ -64,15 +67,20 @@ export default function DashboardItems(props:dashboardProps){
     }
     const role = useSelector((state:any)=>state.auth.role)
     const user:string = useSelector((state:any)=>state.auth.user)
-    const axiosPrivate = useAxiosPrivate()
+    // const axiosPrivate = useAxiosPrivate()
 
     useEffect(()=>{
-        role==='user' && axiosPrivate.get(`${SPRING_SERVER_BASE_URL}/getStudentsForAssessment?username=${user}`).then(res=>{
+        role==='user' && axios.get(`${SPRING_SERVER_BASE_URL}/getStudentsForAssessment?username=${user}`).then(res=>{
+            // console.log(res)
+            if(res.data.studentsMarks.length===0) setShowAttendence(false)
             setStudentsArray(res.data.studentsMarks);
-            setChurch_name(res.data.studentsMarks[0].church);
-            setClass_name(res.data.studentsMarks[0].class);
+            setChurch_name(res.data.studentsMarks[0]?.church);
+            setClass_name(res.data.studentsMarks[0]?.class);
         })
-    },[axiosPrivate,user,role])
+    },[user,role,date])
+
+   
+
     // useEffect(()=>{
     //     getStudentsDataforAssessment(user).then(res=>{
     //         setStudentsArray(res.data.studentsMarks);
@@ -89,15 +97,13 @@ export default function DashboardItems(props:dashboardProps){
                 <a href="/#" className="  flex flex-col justify-between w-11/12 h-20 " onClick={(e)=>toStudentList(e)}>
                     <div className="bg-blue-200 rounded-2xl shadow-lg">
                         <div className="text-xs p-3 px-4 flex justify-between">
-                        <p className="  ">Junior Boys</p>
-                        <div className="flex"><IoLocationOutline style={{fontSize:"0.9rem"}}/> <p className="px-1">Beersheba</p></div>
+                            <p className="  ">{class_name}</p>
+                        <div className="flex"><IoLocationOutline style={{fontSize:"0.9rem"}}/> <p className="px-1">{church_name}</p></div>
                         </div>
                         <div>
-                        <p className=" p-4 px-8 font-semibold ">Take class Assessment</p>
+                            <p className=" p-4 px-8 font-semibold ">Take class Assessment</p>
                         </div>
                     </div>
-
-                    
                 </a>
                 :
                     <div className="">
