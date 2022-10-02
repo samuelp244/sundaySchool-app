@@ -30,7 +30,7 @@ const ManageTeachersPage = () => {
     const [invalidClassName,setInvalidClassName] = useState(false);
 
     let classData = null;
-    const beershebaClasses = ["Begineer","Primary-Boys","Primary-Girls","Juniour-Boys","Juniour-Girls","Intermediate-Boys","Intermediate-Girls","Senior-Boys","Senior-Girls"];
+    const beershebaClasses = ["Begineer","Primary-Boys","Primary-Girls","Junior","Intermediate-Boys","Intermediate-Girls","Senior","Intermediate"];
     if (selectedChurch==="Beersheba"){
       classData = beershebaClasses
     }else if(selectedChurch==="House_Of_Beatitudes"){

@@ -25,7 +25,7 @@ const AddStudent = () => {
     const [invalidClassName,setInvalidClassName] = useState(false);
 
     let classData = null;
-    const beershebaClasses = ["Begineer","Primary-Boys","Primary-Girls","Juniour-Boys","Juniour-Girls","Intermediate-Boys","Intermediate-Girls","Senior-Boys","Senior-Girls"];
+    const beershebaClasses = ["Begineer","Primary-Boys","Primary-Girls","Junior","Intermediate-Boys","Intermediate-Girls","Senior","Intermediate"];
     if (StudentDetails.church==="Beersheba"){
       classData = beershebaClasses
     }else if(StudentDetails.church==="Beersheba"){

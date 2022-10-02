@@ -23,7 +23,7 @@ const AddTeacher = () => {
     const [showRespose,setShowResponse] = useState(false) 
     const [showInvalidResponse,setInvalidResponse] = useState(false) 
     let classData = null;
-    const beershebaClasses = ["Begineer","Primary-Boys","Primary-Girls","Juniour-Boys","Juniour-Girls","Intermediate-Boys","Intermediate-Girls","Senior-Boys","Senior-Girls"];
+    const beershebaClasses = ["Begineer","Primary-Boys","Primary-Girls","Junior","Intermediate-Boys","Intermediate-Girls","Senior","Intermediate"];
     if (TeacherDetails.church==="Beersheba"){
       classData = beershebaClasses
     }else if(TeacherDetails.church==="Beersheba"){

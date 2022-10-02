@@ -190,7 +190,7 @@ const AssessmentStudentList=()=>{
         <div className="flex justify-center">
             <form className="bg-white shadow-2xl px-8 py-5 mx-3  rounded-2xl grid gap-3 font-serif w-[20.2rem]">
                 <div className="flex justify-center ">
-                    <h1 className="  text-xl">BEERSHEBA JUNIOR BOYS </h1>
+                    <h1 className="  text-xl">{assessmentArray[0].church+' '+assessmentArray[0].class}  </h1>
                 </div>
                 <ul className="divide-y-2  ">
                     {newStudentsArray?.map(s=>( 
