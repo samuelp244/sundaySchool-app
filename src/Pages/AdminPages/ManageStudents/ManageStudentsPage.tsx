@@ -55,6 +55,18 @@ const ManageStudentsPage = () => {
     const beershebaClasses = ["Begineer","Primary-Boys","Primary-Girls","Juniour-Boys","Juniour-Girls","Intermediate-Boys","Intermediate-Girls","Senior-Boys","Senior-Girls"];
     if (selectedChurch==="Beersheba"){
       classData = beershebaClasses
+    }else if(selectedChurch==="House_Of_Beatitudes"){
+      classData = beershebaClasses
+    }else if(selectedChurch==="Eliem"){
+        classData = beershebaClasses
+    }else if(selectedChurch==="Bethel"){
+        classData = beershebaClasses
+    }else if(selectedChurch==="Bethani"){
+        classData = beershebaClasses
+    }else if(selectedChurch==="New_Jerusalem"){
+        classData = beershebaClasses
+    }else if(selectedChurch==="Rehaboth"){
+        classData = beershebaClasses
     }
 
     // const axiosPrivate = useAxiosPrivate()
@@ -62,7 +74,7 @@ const ManageStudentsPage = () => {
     useEffect(()=>{
       if(selectedClass!=="DEFAULT"&&selectedChurch!=="DEFAULT"){
           axios.get<getStudentsArray>(`${SPRING_SERVER_BASE_URL}/viewStudent?church=${selectedChurch}&class=${selectedClass}`).then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
             setStudentsList(res.data.students)
           })
       }else{

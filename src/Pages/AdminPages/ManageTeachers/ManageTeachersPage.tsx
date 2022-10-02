@@ -33,6 +33,18 @@ const ManageTeachersPage = () => {
     const beershebaClasses = ["Begineer","Primary-Boys","Primary-Girls","Juniour-Boys","Juniour-Girls","Intermediate-Boys","Intermediate-Girls","Senior-Boys","Senior-Girls"];
     if (selectedChurch==="Beersheba"){
       classData = beershebaClasses
+    }else if(selectedChurch==="House_Of_Beatitudes"){
+      classData = beershebaClasses
+    }else if(selectedChurch==="Eliem"){
+        classData = beershebaClasses
+    }else if(selectedChurch==="Bethel"){
+        classData = beershebaClasses
+    }else if(selectedChurch==="Bethani"){
+        classData = beershebaClasses
+    }else if(selectedChurch==="New_Jerusalem"){
+        classData = beershebaClasses
+    }else if(selectedChurch==="Rehaboth"){
+        classData = beershebaClasses
     }
     
     const viewTeacherDetails = (e:any,id:string) =>{
@@ -125,7 +137,7 @@ const ManageTeachersPage = () => {
       })
     }
 },[teachersList,selectedTeacherId,selectedChurch])
-
+  // console.log(teacher)
   return (
     <>
     {

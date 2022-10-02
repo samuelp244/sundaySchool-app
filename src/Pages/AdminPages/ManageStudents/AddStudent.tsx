@@ -28,6 +28,20 @@ const AddStudent = () => {
     const beershebaClasses = ["Begineer","Primary-Boys","Primary-Girls","Juniour-Boys","Juniour-Girls","Intermediate-Boys","Intermediate-Girls","Senior-Boys","Senior-Girls"];
     if (StudentDetails.church==="Beersheba"){
       classData = beershebaClasses
+    }else if(StudentDetails.church==="Beersheba"){
+        classData = beershebaClasses
+    }else if(StudentDetails.church==="House_Of_Beatitudes"){
+        classData = beershebaClasses
+    }else if(StudentDetails.church==="Eliem"){
+        classData = beershebaClasses
+    }else if(StudentDetails.church==="Bethel"){
+        classData = beershebaClasses
+    }else if(StudentDetails.church==="Bethani"){
+        classData = beershebaClasses
+    }else if(StudentDetails.church==="New_Jerusalem"){
+        classData = beershebaClasses
+    }else if(StudentDetails.church==="Rehaboth"){
+        classData = beershebaClasses
     }
     const [showRespose,setShowResponse] = useState(false) 
     const [showInvalidResponse,setInvalidResponse] = useState(false) 
