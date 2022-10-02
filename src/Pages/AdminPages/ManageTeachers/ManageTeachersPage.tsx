@@ -180,7 +180,7 @@ const ManageTeachersPage = () => {
                             <div className='flex justify-between text-sm'>
                                 <label className=" font-bold">Full Name :</label>
                                 <div>
-                                    <input name="teacher_name" type="text" className="border-2 border-gray-500 rounded-md  font-sans w-[10rem] disabled:bg-gray-300" defaultValue={teacher?.teacher_name} onChange={(e)=>HandleEditChange(e)} disabled={fieldDisabled}/>
+                                    <input name="teacher_name" type="text" className="border-2 border-gray-500 rounded-md  font-sans w-[10rem] disabled:bg-gray-300" defaultValue={teacher?.teacher_name} onChange={(e)=>HandleEditChange(e)} disabled={true}/>
                                     { invalidFullName ?<p className='text-xs mx-2 text-red-600 font-sans'>Please enter FullName</p> : null}
                                 </div>
                             </div>
@@ -189,7 +189,7 @@ const ManageTeachersPage = () => {
                                 
                                 <label className=" font-bold">Mobile :</label>
                                 <div>
-                                    <input name="mobile" type="text" className="border-2 border-gray-500 rounded-md  font-sans w-[10rem] disabled:bg-gray-300" defaultValue={teacher?.mobile} onChange={(e)=>HandleEditChange(e)} disabled={fieldDisabled} />
+                                    <input name="mobile" type="text" className="border-2 border-gray-500 rounded-md  font-sans w-[10rem] disabled:bg-gray-300" defaultValue={teacher?.mobile} onChange={(e)=>HandleEditChange(e)} disabled={true} />
                                     { invalidMobile ?<p className='text-xs mx-2 text-red-600 font-sans'>Please enter Mobile</p> : null}
                                 </div>
                             </div>
@@ -198,7 +198,7 @@ const ManageTeachersPage = () => {
                                 
                                 <label className=" font-bold">Church :</label>
                                 <div>
-                                    <select name="church" className="w-[10rem] p-1 rounded-sm bg-gray-200 text-gray-700 border border-gray-200 font-sans" defaultValue={teacher?.church} onChange={(e)=>HandleEditChange(e)} disabled={fieldDisabled}>
+                                    <select name="church" className="w-[10rem] p-1 rounded-sm bg-gray-200 text-gray-700 border border-gray-200 disabled:bg-gray-300 font-sans" defaultValue={teacher?.church} onChange={(e)=>HandleEditChange(e)} disabled={fieldDisabled}>
                                         <option value="DEFAULT" disabled>select church</option>
                                         <option value="Beersheba">BEERSHEBA</option>
                                         <option value="House_Of_Beatitudes">HOUSE OF BEATITUDES</option>
@@ -217,7 +217,7 @@ const ManageTeachersPage = () => {
                                 
                                 <label className=" font-bold">Assign class :</label>
                                 <div>
-                                    <select name="assigned_class" className="w-[10rem] p-1 rounded-sm bg-gray-200 text-gray-700 border border-gray-200 font-sans" defaultValue={teacher?.assigned_class} onChange={(e)=>HandleEditChange(e)} disabled={fieldDisabled} >
+                                    <select name="assigned_class" className="w-[10rem] p-1 rounded-sm bg-gray-200 text-gray-700 border border-gray-100 font-sans" defaultValue={teacher?.assigned_class} onChange={(e)=>HandleEditChange(e)} disabled={fieldDisabled} >
                                         <option value="DEFAULT" disabled>select class</option>
                                         {classData?.map(c=>(
                                             <option key={c} value={c}>{c}</option>
