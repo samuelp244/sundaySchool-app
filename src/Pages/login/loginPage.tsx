@@ -108,11 +108,11 @@ const LoginPage=()=>{
             {/* <div className='flex justify-center py-1'>
                 <h1 className=' text-3xl  font-bold'>LOGIN</h1>
             </div> */}
-            <div className='flex py-1 poppins'>
+            <div className='flex justify-between py-1 poppins'>
                 <label className=' font-medium'>Username: </label>
-                <div>
+                <div className=''>
                 <input 
-                className='border-2 border-slate-400 rounded-md mx-2 px-1 font-light'
+                className='border-2 border-slate-400 rounded-md mx-2 px-1 font-light w-40 float-right'
                 type="text"
                 name="username"
                 value={inputValues.username}
@@ -120,11 +120,11 @@ const LoginPage=()=>{
                 { usernameInvalid ?<p className='text-xs mx-2 text-red-600 '>Please enter username</p> : null}
                 </div>
             </div>
-            <div className='flex py-1 poppins'>
+            <div className='flex justify-between py-1 poppins'>
                 <label className='font-medium'>Password: </label>
-                <div>
+                <div >
                 <input 
-                className='border-2 border-slate-400 rounded-md mx-2 px-1 font-light'
+                className='border-2 border-slate-400 rounded-md mx-2 px-1 font-light w-40 '
                 name="password"
                 type="password"
                 value={inputValues.password}
