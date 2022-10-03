@@ -6,7 +6,7 @@ import { axiosPrivate } from '../../api/services/authService';
 import { useNavigate } from 'react-router-dom';
 // import { token } from '../InterfacesAndTypes';
 import { useDispatch } from 'react-redux';
-
+import logo from '../../assets/images/Logo.png'
 const LoginPage=()=>{
     const [inputValues,setInputValues] = useState({
         username:"",
@@ -98,27 +98,33 @@ const LoginPage=()=>{
     
   return (
     <div className='flex justify-center h-screen items-center'>
-        <form className='flex flex-col font-mono rounded-2xl shadow-2xl gap-9 p-7'>
-            <div className='flex justify-center py-1'>
-                <h1 className=' text-3xl  font-bold'>LOGIN</h1>
+        <form className='flex flex-col font-serif rounded-2xl shadow-2xl gap-5 p-7'>
+            <div  className='grid gap-3 justify-center poppings'>
+                <div className='flex justify-center'><img src={logo} alt='logo.png' className=' w-32 text-center'></img></div>
+                
+                <p className='text-center text-xl font-medium'>Sign in to Sunday School</p>
+                <p className='text-center text-sm'>Teacher/Admin Login</p>
             </div>
-            <div className='flex py-1'>
-                <label className='text-lg'>USERNAME: </label>
+            {/* <div className='flex justify-center py-1'>
+                <h1 className=' text-3xl  font-bold'>LOGIN</h1>
+            </div> */}
+            <div className='flex py-1 poppins'>
+                <label className=' font-medium'>Username: </label>
                 <div>
                 <input 
-                className='border-2 border-slate-400 rounded-md mx-2 px-1'
+                className='border-2 border-slate-400 rounded-md mx-2 px-1 font-light'
                 type="text"
                 name="username"
                 value={inputValues.username}
                 onChange={(e)=>HandleChange(e)}/>
-                { usernameInvalid ?<p className='text-xs mx-2 text-red-600'>Please enter username</p> : null}
+                { usernameInvalid ?<p className='text-xs mx-2 text-red-600 '>Please enter username</p> : null}
                 </div>
             </div>
-            <div className='flex py-1'>
-                <label className='text-lg'>PASSWORD: </label>
+            <div className='flex py-1 poppins'>
+                <label className='font-medium'>Password: </label>
                 <div>
                 <input 
-                className='border-2 border-slate-400 rounded-md mx-2 px-1'
+                className='border-2 border-slate-400 rounded-md mx-2 px-1 font-light'
                 name="password"
                 type="password"
                 value={inputValues.password}

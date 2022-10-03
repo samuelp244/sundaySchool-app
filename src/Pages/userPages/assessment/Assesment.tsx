@@ -120,10 +120,10 @@ const Assessment = ()=>{
         {isEmpty ? null : 
             <div className="flex justify-center">
 
-            <form className="flex flex-col gap-6 bg-white shadow-2xl px-5 py-5 mx-3  rounded-2xl font-serif w-[20.2rem]">
+            <form className="flex flex-col gap-6 bg-white shadow-2xl px-5 py-5 mx-3  rounded-2xl poppins w-[20.2rem]">
                 <div className="">
                     <div className="flex justify-center ">
-                        <p className="pr-1 font-bold ">Student Name : </p><p className="px-1 ml-3"> {studentAssessment?.first_name+" "+studentAssessment?.surname}</p>   
+                        <p className="pr-1 font-medium ">Student Name : </p><p className="px-1 font-thin ml-3"> {studentAssessment?.first_name+" "+studentAssessment?.surname}</p>   
                     </div>
                 </div>
                 <div className="grid gap-1" >

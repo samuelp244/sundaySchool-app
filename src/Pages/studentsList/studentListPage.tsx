@@ -8,6 +8,7 @@ import { studentDetails } from '../InterfacesAndTypes';
 import { useSelector } from 'react-redux';
 import { SPRING_SERVER_BASE_URL } from '../../api/services/SpringServer/spring';
 import axios from 'axios';
+// import {IoIosArrowDropright,IoIosArrowDroprightCircle} from "react-icons/io"
 // import useAxiosPrivate from '../../Hooks/useAxiosPrivate';
 // import { getStudentsDataforAssessment } from '../../api/services/SpringServer/UserService/AssessmentsService';
 
@@ -70,18 +71,20 @@ export default function StudentListPage() {
 
             <main className="relative  flex flex-col gap-4">
                 <div className='flex justify-center'>
-                <div className='bg-white shadow-2xl px-8 py-3 pt-5 mx-3  rounded-2xl grid gap-5 font-serif w-[21rem]'>
+                <div className='bg-white shadow-2xl px-8 py-3 pt-5 mx-3  rounded-2xl grid gap-5  w-[21rem]'>
                     {showData?
                     <>
                         <div className="flex justify-center ">
-                            <h1 className="  text-xl">{church_name+" "+class_name}</h1>
+                            <h1 className="font-serif  text-xl">{church_name+" "+class_name}</h1>
                         </div>
-                        <ul className=' flex flex-col gap-3'>
+                        <ul className=' flex flex-col gap-3 poppins'>
                             {studentsArray?.map(s=>(
                                 <li key={s.uniqueID}>
                                     <div className='flex justify-between'>
-                                        <p className=''>{s.first_name+" "+s.surname}</p>
-                                        <button className='text-sm bg-blue-300 hover:bg-blue-400 rounded  px-2' onClick={(e)=>viewStudentDetails(e,s.uniqueID)}>view details</button>
+                                        <p className='font-thin'>{s.first_name+" "+s.surname}</p>
+                                        <button className='text-sm font-thin bg-blue-300 hover:bg-blue-400 rounded  px-2' onClick={(e)=>viewStudentDetails(e,s.uniqueID)}>view details</button>
+                                        {/* <a href='/#' onClick={(e)=>viewStudentDetails(e,s.uniqueID)} className='px-3 mr-4'><span className='text-blue-500 '><IoIosArrowDropright size={"23px"}/></span></a> */}
+                                        {/* <a href='/#' onClick={(e)=>viewStudentDetails(e,s.uniqueID)}><span className='text-blue-500 '><IoIosArrowDroprightCircle size={"23px"}/></span></a> */}
                                     </div>
                                 </li>
                             ))}

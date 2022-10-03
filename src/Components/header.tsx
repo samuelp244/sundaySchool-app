@@ -11,6 +11,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '../Hooks/useMediaQuery';
 import { logOut } from '../redux/authSlice';
 import { deleteArray } from '../redux/classAssessment';
+import {FaSignOutAlt, FaChalkboardTeacher} from 'react-icons/fa'
+import {HiPencilAlt, HiOutlineUsers} from "react-icons/hi"
+import {IoMdHome} from 'react-icons/io'
 // import axios from "../api/services/authService"
 
 export default function Header(props:headerProps) {
@@ -32,12 +35,13 @@ export default function Header(props:headerProps) {
     const xs = useMediaQuery("(min-width: 540px)");
   return (
         <>
-            <header className="flex justify-between   sticky shadow-2xl p-1 bg-white ">
+            <header className="flex justify-between shadow-2xl  sticky  p-1 bg-transparent ">
                 <div className="p-2">
                     <Burger
                         opened={navbarOpened}
                         onClick={() => setNavbarOpened((o:boolean) => !o)}
                         title={title}
+                        // color={"white"}
                     />
                     
                 </div>
@@ -75,11 +79,11 @@ export default function Header(props:headerProps) {
                                 />
                             </div>
                         </div>
-                        <div className='flex justify-center'>
+                        <div className='flex pl-9'>
                             <main className=' flex flex-col text-start gap-8'>
                                 <div className='flex'>
                                     <img src={userImage} className=" w-14" alt="userImage.png"/>
-                                    <div className='px-4'>
+                                    <div className='px-4 my-auto'>
                                         <h3 className=' text-2xl font-bold '>{username}</h3>
                                         {role==='user'?<Link to="/profile" className=' font-light'>View profile</Link>
                                         :null}
@@ -88,34 +92,34 @@ export default function Header(props:headerProps) {
                                 </div>
                                 <div className='flex flex-col text-lg gap-5'>
                                     <div>
-                                        <Link to="/dashboard"><p>Dashboard</p></Link>
+                                        <Link to="/dashboard" className=' flex gap-4'><span className='my-auto text-gray-700'><IoMdHome size={"25px"}/></span><p>Dashboard</p></Link>
                                     </div>
 
                                     { role==="user" ?
                                     <>
                                         <div>
-                                            <Link to="/students"><p>My Students</p></Link>
+                                            <Link to="/students" className=' flex gap-4'><span className='my-auto'><HiOutlineUsers size={"25px"}/></span><p>My Students</p></Link>
                                         </div>
                                         <div>
-                                            <Link to="/manageStudentAssessment"><p>Manage Assessment</p></Link> 
+                                            <Link to="/manageStudentAssessment" className=' flex gap-4'><span className='my-auto'><HiPencilAlt size={"25px"}/></span><p>Manage Assessment</p></Link> 
                                         </div>  
                                     </>:null}
 
                                     { role==="admin" ?
                                     <>
                                         <div>
-                                            <Link to="/managestudents"><p>Manage Students</p></Link>
+                                            <Link to="/managestudents" className=' flex gap-4'><span className='my-auto'><HiOutlineUsers size={"25px"}/></span><p>Manage Students</p></Link>
                                         </div>
                                         <div>
-                                            <Link to="/manageteachers"><p>Manage Teachers</p></Link>
+                                            <Link to="/manageteachers" className=' flex gap-4'><span className='my-auto'><FaChalkboardTeacher size={"25px"}/></span><p>Manage Teachers</p></Link>
                                         </div>
                                         <div>
-                                            <Link to="/students"><p>Manage Student Assessments</p></Link>
+                                            <Link to="/students" className=' flex gap-4'><span className='my-auto'><HiPencilAlt size={"25px"}/></span><p>Manage Student Assessments</p></Link>
                                         </div> 
                                     </>   
                                     : null}
                                     <div>
-                                        <a href="/#" onClick={(e)=>{logoutHandler(e)}}><p>Logout</p></a>
+                                        <a href="/#" onClick={(e)=>{logoutHandler(e)}} className=' flex gap-4'><span className='my-auto'><FaSignOutAlt size={"25px"}/></span><p>Logout</p></a>
                                         
                                     </div>
                                 </div>

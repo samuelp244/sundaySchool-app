@@ -5,7 +5,7 @@ import DashboardItems from "./dashboardItems";
 import Header from "../../Components/header";
 // import axios from "axios";
 // import { useSelector } from "react-redux";
-
+// import bg from "../../assets/images/luke.jpg"
 
 export default function DashboardPage(){
 
@@ -29,12 +29,16 @@ export default function DashboardPage(){
     },[assessmentDate])
 
     return (
-        <div className="  h-screen p-0 flex flex-col gap-5 bg-slate-500">
+        <>
+        <div className='z-0   absolute w-screen'>
+            {/* <img src={bg} alt="bgimage" className=" object-cover h-28 w-screen"></img> */}
+        </div>
+        <div className="  h-screen p-0 flex flex-col gap-5 z-10 bg-transparent">
             <Header 
             userIcon= {true}
             headerTitle={"Sunday School"}/>
             
-            <main className="relative  flex flex-col gap-4 ">
+            <main className="relative  grid gap-4 ">
                 <div className="flex justify-center">
                     <div className="container shadow-2xl rounded-2xl bg-white w-11/12 xs:w-[21rem] ">
                         <div className=" p-3 py-4 flex justify-center">
@@ -62,5 +66,6 @@ export default function DashboardPage(){
             </main>
             
         </div>
+        </>
     );
 }
