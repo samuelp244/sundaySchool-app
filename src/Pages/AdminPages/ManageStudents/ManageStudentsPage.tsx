@@ -197,7 +197,7 @@ const ManageStudentsPage = () => {
                             <div className='flex justify-between text-sm'>
                                 <label className=" font-bold">First Name :</label>
                                 <div>
-                                    <input name="first_name" type="text" className="border-2 px-1 border-gray-500 rounded-sm  font-sans w-[10rem] disabled:bg-gray-300" defaultValue={student?.first_name} onChange={(e)=>HandleEditChange(e)} disabled={true} />
+                                    <input name="first_name" type="text" className="border-2 px-1 border-gray-500 rounded-sm  font-sans w-[10rem] disabled:bg-gray-300" defaultValue={student?.first_name} onChange={(e)=>HandleEditChange(e)} disabled={fieldDisabled} />
                                     { invalidFirstName ?<p className='text-xs mx-2 text-red-600 font-sans'>Please enter firstname</p> : null}
                                 </div>
                             </div>
@@ -206,7 +206,7 @@ const ManageStudentsPage = () => {
                                 
                                 <label className=" font-bold"> Surname :</label>
                                 <div>
-                                    <input name="surname" type="text" className="border-2 px-1 border-gray-500 rounded-sm  font-sans w-[10rem] disabled:bg-gray-300" defaultValue={student?.surname} onChange={(e)=>HandleEditChange(e)} disabled={true}/>
+                                    <input name="surname" type="text" className="border-2 px-1 border-gray-500 rounded-sm  font-sans w-[10rem] disabled:bg-gray-300" defaultValue={student?.surname} onChange={(e)=>HandleEditChange(e)} disabled={fieldDisabled}/>
                                     { invalidSurname ?<p className='text-xs mx-2 text-red-600 font-sans'>Please enter Surname</p> : null}
                                 </div>
                             </div>
@@ -215,7 +215,7 @@ const ManageStudentsPage = () => {
                                 
                                 <label className=" font-bold">Mobile :</label>
                                 <div>
-                                    <input name="mobile" type="text" className="border-2 px-1 border-gray-500 rounded-sm  font-sans w-[10rem] disabled:bg-gray-300" defaultValue={student?.mobile} onChange={(e)=>HandleEditChange(e)} disabled={true} />
+                                    <input name="mobile" type="text" className="border-2 px-1 border-gray-500 rounded-sm  font-sans w-[10rem] disabled:bg-gray-300" defaultValue={student?.mobile} onChange={(e)=>HandleEditChange(e)} disabled={fieldDisabled} />
                                     { invalidMobile ?<p className='text-xs mx-2 text-red-600 font-sans'>Please enter Mobile</p> : null}
                                 </div>
                             </div>
