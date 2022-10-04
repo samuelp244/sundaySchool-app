@@ -108,11 +108,12 @@ const ManageStudentsPage = () => {
       uniqueID:selectedStudentId,
       first_name:student.first_name,
       surname:student.surname,
-      mobile:student.mobile,
+      mobile:student.mobile===undefined?student.mobile:"",
       church:student.church,
       class:student.class
     }
-    // console.log(studentObject);
+    console.log(studentObject);
+  
     axios.put(`${SPRING_SERVER_BASE_URL}/editStudent`,studentObject).then(()=>{
       setStudentModalOpened(false)
       const updatedList = studentsList?.map(item=>{
