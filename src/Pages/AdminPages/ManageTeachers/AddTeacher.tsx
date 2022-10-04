@@ -24,22 +24,27 @@ const AddTeacher = () => {
     const [showInvalidResponse,setInvalidResponse] = useState(false) 
     let classData = null;
     const beershebaClasses = ["Begineer","Primary-Boys","Primary-Girls","Junior","Intermediate-Boys","Intermediate-Girls","Senior","Intermediate"];
+    const hobClasses = ["Primary-Boys","Primary-Girls","Intermediate-Boys","Intermediate-Girls"];
+    const EliemClasses = ["Begineer-Boys","Begineer-Girls","Primary-Boys","Primary-Girls","Junior-Boys","Junior-Girls","Intermediate-Girls",];
+    const bethelClasses = ["Begineer-Girls","Primary-Boys","Primary-Girls","Junior-Boys","Junior-Girls","Intermediate-Boys"];
+    const bethaniClasses = ["Begineer-Boys","Begineer-Girls","Primary-Boys","Primary-Girls","Junior-Boys","Junior-Girls","Intermediate-Boys","Intermediate-Girls","Senior-Boys","Senior-Girls"];
+    const new_jersClasses = ["Kg-Boys","Kg-Girls","Junior-Boys","Junior-Girls"];
+    // const RehClasses = [];
+
     if (TeacherDetails.church==="Beersheba"){
       classData = beershebaClasses
-    }else if(TeacherDetails.church==="Beersheba"){
-        classData = beershebaClasses
     }else if(TeacherDetails.church==="House_Of_Beatitudes"){
-        classData = beershebaClasses
+      classData = hobClasses
     }else if(TeacherDetails.church==="Eliem"){
-        classData = beershebaClasses
+        classData = EliemClasses
     }else if(TeacherDetails.church==="Bethel"){
-        classData = beershebaClasses
+        classData = bethelClasses
     }else if(TeacherDetails.church==="Bethani"){
-        classData = beershebaClasses
+        classData = bethaniClasses
     }else if(TeacherDetails.church==="New_Jerusalem"){
-        classData = beershebaClasses
+        classData = new_jersClasses
     }else if(TeacherDetails.church==="Rehaboth"){
-        classData = beershebaClasses
+        // classData = RehClasses
     }
     // const axiosPrivate = useAxiosPrivate();
     const AddTeacherHandler = async(e:any) =>{

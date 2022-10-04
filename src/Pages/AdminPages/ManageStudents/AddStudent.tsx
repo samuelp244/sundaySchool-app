@@ -26,22 +26,27 @@ const AddStudent = () => {
 
     let classData = null;
     const beershebaClasses = ["Begineer","Primary-Boys","Primary-Girls","Junior","Intermediate-Boys","Intermediate-Girls","Senior","Intermediate"];
+    const hobClasses = ["Primary-Boys","Primary-Girls","Intermediate-Boys","Intermediate-Girls"];
+    const EliemClasses = ["Begineer-Boys","Begineer-Girls","Primary-Boys","Primary-Girls","Junior-Boys","Junior-Girls","Intermediate-Girls",];
+    const bethelClasses = ["Begineer-Girls","Primary-Boys","Primary-Girls","Junior-Boys","Junior-Girls","Intermediate-Boys"];
+    const bethaniClasses = ["Begineer-Boys","Begineer-Girls","Primary-Boys","Primary-Girls","Junior-Boys","Junior-Girls","Intermediate-Boys","Intermediate-Girls","Senior-Boys","Senior-Girls"];
+    const new_jersClasses = ["Kg-Boys","Kg-Girls","Junior-Boys","Junior-Girls"];
+    // const RehClasses = [];
+
     if (StudentDetails.church==="Beersheba"){
       classData = beershebaClasses
-    }else if(StudentDetails.church==="Beersheba"){
-        classData = beershebaClasses
     }else if(StudentDetails.church==="House_Of_Beatitudes"){
-        classData = beershebaClasses
+      classData = hobClasses
     }else if(StudentDetails.church==="Eliem"){
-        classData = beershebaClasses
+        classData = EliemClasses
     }else if(StudentDetails.church==="Bethel"){
-        classData = beershebaClasses
+        classData = bethelClasses
     }else if(StudentDetails.church==="Bethani"){
-        classData = beershebaClasses
+        classData = bethaniClasses
     }else if(StudentDetails.church==="New_Jerusalem"){
-        classData = beershebaClasses
+        classData = new_jersClasses
     }else if(StudentDetails.church==="Rehaboth"){
-        classData = beershebaClasses
+        // classData = RehClasses
     }
     const [showRespose,setShowResponse] = useState(false) 
     const [showInvalidResponse,setInvalidResponse] = useState(false) 

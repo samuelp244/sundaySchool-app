@@ -53,20 +53,27 @@ const ManageStudentsPage = () => {
 
     let classData = null;
     const beershebaClasses = ["Begineer","Primary-Boys","Primary-Girls","Junior","Intermediate-Boys","Intermediate-Girls","Senior","Intermediate"];
+    const hobClasses = ["Primary-Boys","Primary-Girls","Intermediate-Boys","Intermediate-Girls"];
+    const EliemClasses = ["Begineer-Boys","Begineer-Girls","Primary-Boys","Primary-Girls","Junior-Boys","Junior-Girls","Intermediate-Girls",];
+    const bethelClasses = ["Begineer-Girls","Primary-Boys","Primary-Girls","Junior-Boys","Junior-Girls","Intermediate-Boys"];
+    const bethaniClasses = ["Begineer-Boys","Begineer-Girls","Primary-Boys","Primary-Girls","Junior-Boys","Junior-Girls","Intermediate-Boys","Intermediate-Girls","Senior-Boys","Senior-Girls"];
+    const new_jersClasses = ["Kg-Boys","Kg-Girls","Junior-Boys","Junior-Girls"];
+    // const RehClasses = [];
+
     if (selectedChurch==="Beersheba"){
       classData = beershebaClasses
     }else if(selectedChurch==="House_Of_Beatitudes"){
-      classData = beershebaClasses
+      classData = hobClasses
     }else if(selectedChurch==="Eliem"){
-        classData = beershebaClasses
+        classData = EliemClasses
     }else if(selectedChurch==="Bethel"){
-        classData = beershebaClasses
+        classData = bethelClasses
     }else if(selectedChurch==="Bethani"){
-        classData = beershebaClasses
+        classData = bethaniClasses
     }else if(selectedChurch==="New_Jerusalem"){
-        classData = beershebaClasses
+        classData = new_jersClasses
     }else if(selectedChurch==="Rehaboth"){
-        classData = beershebaClasses
+        // classData = RehClasses
     }
 
     // const axiosPrivate = useAxiosPrivate()
