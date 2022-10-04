@@ -67,7 +67,7 @@ const AddStudent = () => {
           }
         // console.log(studentObject)
         try{
-            if(StudentDetails.studentFirstName!==""&&StudentDetails.studentSurname!==""&&StudentDetails.church!=="DEFAULT"&&StudentDetails.selectedClass!=="DEFAULT"){
+            if(StudentDetails.studentFirstName!==""&&StudentDetails.church!=="DEFAULT"&&StudentDetails.selectedClass!=="DEFAULT"){
                 axios.post(`${SPRING_SERVER_BASE_URL}/addStudent`,studentObject).then(res=>{
                     console.log(res)
                     if(res.data==="200 OK"){
