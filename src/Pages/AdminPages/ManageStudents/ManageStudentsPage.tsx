@@ -49,6 +49,7 @@ const ManageStudentsPage = () => {
           ...student,
           [name]:value
       })
+      // console.log(student.class)
   }
 
     let classData = null;
@@ -232,7 +233,7 @@ const ManageStudentsPage = () => {
                                 
                                 <label className=" font-bold">Church :</label>
                                 <div>
-                                    <select name="church" className="w-[10rem] p-1 rounded-sm bg-gray-200 text-gray-700 border border-gray-200 font-sans " defaultValue={student?.church} onChange={(e)=>HandleEditChange(e)} disabled={fieldDisabled}>
+                                    <select name="church" className="w-[10rem] p-1 rounded-sm bg-gray-200 text-gray-700 border border-gray-200 font-sans " defaultValue={student?.church} onChange={(e)=>HandleEditChange(e)} disabled={true}>
                                         <option value="DEFAULT" disabled>select church</option>
                                         <option value="Beersheba">BEERSHEBA</option>
                                         <option value="House_Of_Beatitudes">HOUSE OF BEATITUDES</option>
@@ -251,7 +252,7 @@ const ManageStudentsPage = () => {
                                 
                                 <label className=" font-bold">Class :</label>
                                 <div>
-                                    <select name="selectedClass" className="w-[10rem] p-1  rounded-sm bg-gray-200 text-gray-700 border border-gray-200 font-sans" defaultValue={student?.class} onChange={(e)=>HandleEditChange(e)} disabled={fieldDisabled} >
+                                    <select name="selectedClass" className="w-[10rem] p-1  rounded-sm bg-gray-200 text-gray-700 border border-gray-200 font-sans" defaultValue={student?.class} onChange={(e)=>HandleEditChange(e)} disabled={true} >
                                         <option value="DEFAULT" disabled>select class</option>
                                         {classData?.map(c=>(
                                             <option key={c} value={c}>{c.replace(/_+/g, ' ')}</option>
