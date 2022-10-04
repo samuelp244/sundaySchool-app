@@ -42,7 +42,7 @@ export default function StudentListPage() {
         //     setClass_name(res.data.studentsMarks[0].class);
         // })
         axios.get(`${SPRING_SERVER_BASE_URL}/getStudentsForAssessment?username=${user}`).then(res=>{
-            if(res.data.studentsMarks.length>0) setShowData(true)
+            if(res.data.studentsMarks?.length>0) setShowData(true)
             setStudentsArray(res.data.studentsMarks);
             setChurch_name(res.data.studentsMarks[0]?.church);
             setClass_name(res.data.studentsMarks[0]?.class);

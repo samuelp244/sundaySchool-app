@@ -92,30 +92,30 @@ export default function Header(props:headerProps) {
                                 </div>
                                 <div className='flex flex-col text-lg gap-5'>
                                     <div>
-                                        <Link to="/dashboard" className=' flex gap-4'><span className='my-auto text-gray-700'><IoMdHome size={"25px"}/></span><p>Dashboard</p></Link>
+                                        <Link to="/dashboard" onClick={()=>setNavbarOpened(false)} className=' flex gap-4'><span className='my-auto text-gray-700'><IoMdHome size={"25px"}/></span><p>Dashboard</p></Link>
                                     </div>
 
                                     { role==="user" ?
                                     <>
                                         <div>
-                                            <Link to="/students" className=' flex gap-4'><span className='my-auto'><HiOutlineUsers size={"25px"}/></span><p>My Students</p></Link>
+                                            <Link to="/students" onClick={()=>setNavbarOpened(false)} className=' flex gap-4'><span className='my-auto'><HiOutlineUsers size={"25px"}/></span><p>My Students</p></Link>
                                         </div>
                                         <div>
-                                            <Link to="/manageStudentAssessment" className=' flex gap-4'><span className='my-auto'><HiPencilAlt size={"25px"}/></span><p>Manage Assessment</p></Link> 
+                                            <Link to="/manageStudentAssessment" onClick={()=>setNavbarOpened(false)} className=' flex gap-4'><span className='my-auto'><HiPencilAlt size={"25px"}/></span><p>Manage Assessment</p></Link> 
                                         </div>  
                                     </>:null}
 
                                     { role==="admin" ?
                                     <>
                                         <div>
-                                            <Link to="/managestudents" className=' flex gap-4'><span className='my-auto'><HiOutlineUsers size={"25px"}/></span><p>Manage Students</p></Link>
+                                            <Link to="/managestudents" onClick={()=>setNavbarOpened(false)} className=' flex gap-4'><span className='my-auto'><HiOutlineUsers size={"25px"}/></span><p>Manage Students</p></Link>
                                         </div>
                                         <div>
-                                            <Link to="/manageteachers" className=' flex gap-4'><span className='my-auto'><FaChalkboardTeacher size={"25px"}/></span><p>Manage Teachers</p></Link>
+                                            <Link to="/manageteachers" onClick={()=>setNavbarOpened(false)} className=' flex gap-4'><span className='my-auto'><FaChalkboardTeacher size={"25px"}/></span><p>Manage Teachers</p></Link>
                                         </div>
-                                        <div>
-                                            <Link to="/students" className=' flex gap-4'><span className='my-auto'><HiPencilAlt size={"25px"}/></span><p>Manage Student Assessments</p></Link>
-                                        </div> 
+                                        {/* <div>
+                                            <Link to="/students" onClick={()=>setNavbarOpened(false)} className=' flex gap-4'><span className='my-auto'><HiPencilAlt size={"25px"}/></span><p>Manage Student Assessments</p></Link>
+                                        </div>  */}
                                     </>   
                                     : null}
                                     <div>

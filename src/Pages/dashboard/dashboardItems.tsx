@@ -20,22 +20,18 @@ import axios from "axios";
 export default function DashboardItems(props:dashboardProps){
     const date = props.date;
     const [showAttendence, setShowAttendence] = useState(false);
+    const currDate = useCurrData();
+    
     
     useEffect(()=>{
-        if(date?.toDateString()?.slice(0,3)==="Sun"){
+        const today = new Date()
+        if(date?.toDateString()?.slice(0,3)==="Sun"&&date.getDate()>=today.getDate()&&date?.getMonth()>=today.getMonth()){
             setShowAttendence(true);
         }else{
             setShowAttendence(false)
         }
     },[date])
-
-    // const today = new Date()
-    // const dd = String(today.getDate()).padStart(2,'0');
-    // const mm = String(today.getMonth() + 1).padStart(2, '0'); 
-    // const yyyy = today.getFullYear();
-    // const currDate = yyyy+"-"+mm+"-"+dd;
-    const currDate = useCurrData();
-    // const studentsArray = studentsData.students
+    
     const [studentsArray,setStudentsArray] = useState<studentDetails[]>();
     const [church_name,setChurch_name] = useState("");
     const [class_name,setClass_name] = useState("");
