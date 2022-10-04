@@ -115,7 +115,7 @@ const ManageStudentsPage = () => {
       uniqueID:selectedStudentId,
       first_name:student.first_name,
       surname:student.surname,
-      mobile:student.mobile===undefined?student.mobile:"",
+      mobile:student.mobile,
       church:student.church,
       class:student.class
     }
