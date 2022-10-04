@@ -55,7 +55,7 @@ const AddStudent = () => {
         e.preventDefault();
         if(StudentDetails.studentFirstName==="") setInvalidFirstName(true);
         if(StudentDetails.studentSurname==="") setInvalidSurname(true);
-        if(StudentDetails.studentMobile==="") setInvalidMobile(true);
+        // if(StudentDetails.studentMobile==="") setInvalidMobile(true);
         if(StudentDetails.church==="DEFAULT") setInvalidChurch(true);
         if(StudentDetails.selectedClass==="DEFAULT") setInvalidClassName(true);
         const studentObject = {
@@ -67,13 +67,19 @@ const AddStudent = () => {
           }
         // console.log(studentObject)
         try{
-            axios.post(`${SPRING_SERVER_BASE_URL}/addStudent`,studentObject).then(res=>{
-                console.log(res)
-                if(res.status===200){
-                    setInvalidResponse(false)
-                    setShowResponse(true);
-                }
-            })
+            if(StudentDetails.studentFirstName!==""&&StudentDetails.studentSurname!==""&&StudentDetails.church!=="DEFAULT"&&StudentDetails.selectedClass!=="DEFAULT"){
+                axios.post(`${SPRING_SERVER_BASE_URL}/addStudent`,studentObject).then(res=>{
+                    console.log(res)
+                    if(res.data==="200 OK"){
+                        setInvalidResponse(false)
+                        setShowResponse(true);
+                    }else if(res.data==="400 BAD_REQUEST"){
+                        setInvalidResponse(true)
+                        setShowResponse(false);
+                    }
+                })
+            }
+            
         }catch(err){
             console.log(err)
             setShowResponse(false)
@@ -91,7 +97,8 @@ const AddStudent = () => {
         setInvalidMobile(false);
         setInvalidChurch(false);
         setInvalidClassName(false);
-
+        setInvalidResponse(false);
+        setShowResponse(false);
         const {name,value} = e.target;
         setStudentDetails({
             ...StudentDetails,
